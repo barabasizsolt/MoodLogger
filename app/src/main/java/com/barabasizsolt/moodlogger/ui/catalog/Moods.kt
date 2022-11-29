@@ -19,8 +19,8 @@ fun Mood(
 ) = Image(
     painter = painterResource(id = selectedMood.resId),
     contentDescription = null,
-    contentScale = ContentScale.Crop,
-    modifier = modifier.size(size = radius / 3 + radius / 3)
+    contentScale = ContentScale.Fit,
+    modifier = modifier.size(size = radius / 3 + radius / 2)
 )
 
 val moods = buildList {

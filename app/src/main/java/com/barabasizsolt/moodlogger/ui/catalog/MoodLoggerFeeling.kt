@@ -1,5 +1,6 @@
 package com.barabasizsolt.moodlogger.ui.catalog
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -7,14 +8,18 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -30,101 +35,75 @@ fun MoodLoggerFeelings(
         .height(height = radius * 2 - radius / 4)
         .width(width = radius * 2 - radius / 6)
 ) {
-    PositiveFeeling(modifier = Modifier.align(alignment = Alignment.TopCenter), radius = radius)
-    NegativeFeeling(modifier = Modifier.align(alignment = Alignment.BottomCenter), radius = radius)
-    ActiveFeeling(modifier = Modifier.align(alignment = Alignment.CenterEnd), radius = radius)
-    InactiveFeeling(modifier = Modifier.align(alignment = Alignment.CenterStart), radius = radius)
+    FeelingText(
+        text = stringResource(id = R.string.positive),
+        radius = radius,
+        modifier = Modifier.align(alignment = Alignment.TopCenter)
+    )
+    FeelingText(
+        text = stringResource(id = R.string.negative),
+        radius = radius,
+        modifier = Modifier.align(alignment = Alignment.BottomCenter)
+    )
+    FeelingText(
+        text = stringResource(id = R.string.active),
+        radius = radius,
+        modifier = Modifier.align(alignment = Alignment.CenterEnd)
+    )
+    FeelingText(
+        text = stringResource(id = R.string.inactive),
+        radius = radius,
+        modifier = Modifier.align(alignment = Alignment.CenterStart)
+    )
+
+    VerticalDivider(
+        height = radius + radius / 3,
+        modifier = Modifier.align(alignment = Alignment.Center)
+    )
+    HorizontalDivider(
+        width = radius + radius / 6,
+        modifier = Modifier.align(alignment = Alignment.Center)
+    )
+
+    Box(
+        modifier = Modifier
+            .size(size = radius / 3 + radius / 2)
+            .clip(shape = CircleShape)
+            .background(color = MaterialTheme.colors.background)
+            .align(alignment = Alignment.Center)
+    )
 }
 
 @Composable
-fun PositiveFeeling(
-    radius: Dp,
+private fun VerticalDivider(
+    height: Dp,
     modifier: Modifier = Modifier
-) = VerticalFeelingItem(
-    modifier = modifier
-) {
-    FeelingText(text = stringResource(id = R.string.positive), radius = radius)
-    VerticalDivider(height = radius / 3)
-}
-
-@Composable
-fun NegativeFeeling(
-    radius: Dp,
-    modifier: Modifier = Modifier
-) = VerticalFeelingItem(
-    modifier = modifier
-) {
-    VerticalDivider(height = radius / 3)
-    FeelingText(text = stringResource(id = R.string.negative), radius = radius)
-}
-
-@Composable
-fun ActiveFeeling(
-    radius: Dp,
-    modifier: Modifier = Modifier
-) = HorizontalFeelingItem(
-    modifier = modifier
-) {
-    HorizontalDivider(width = radius / 8)
-    FeelingText(text = stringResource(id = R.string.active), radius = radius)
-}
-
-@Composable
-fun InactiveFeeling(
-    radius: Dp,
-    modifier: Modifier = Modifier
-) = HorizontalFeelingItem(
-    modifier = modifier
-) {
-    FeelingText(text = stringResource(id = R.string.inactive), radius = radius)
-    HorizontalDivider(width = radius / 8)
-}
-
-@Composable
-private fun VerticalFeelingItem(
-    modifier: Modifier = Modifier,
-    content: @Composable ColumnScope.() -> Unit
-) = Column(
-    modifier = modifier.wrapContentSize(),
-    horizontalAlignment = Alignment.CenterHorizontally,
-    verticalArrangement = Arrangement.spacedBy(space = 4.dp),
-    content = content
-)
-
-@Composable
-private fun HorizontalFeelingItem(
-    modifier: Modifier = Modifier,
-    content: @Composable RowScope.() -> Unit
-) = Row(
-    modifier = modifier.wrapContentSize(),
-    verticalAlignment = Alignment.CenterVertically,
-    horizontalArrangement = Arrangement.spacedBy(space = 4.dp),
-    content = content
-)
-
-@Composable
-private fun VerticalDivider(height: Dp) = Divider(
+) = Divider(
     color = MaterialTheme.colors.primary,
-    modifier = Modifier
+    modifier = modifier
         .height(height = height)
         .width(width = 2.dp)
 )
 
 @Composable
-private fun HorizontalDivider(width: Dp) = Divider(
+private fun HorizontalDivider(
+    width: Dp,
+    modifier: Modifier = Modifier
+) = Divider(
     color = MaterialTheme.colors.primary,
     thickness = 2.dp,
-    modifier = Modifier
-        .width(width = width)
+    modifier = modifier.width(width = width)
 )
 
 @Composable
 private fun FeelingText(
     radius: Dp,
-    text: String
+    text: String,
+    modifier: Modifier = Modifier
 ) = Text(
     text = text,
     maxLines = 1,
     color = MaterialTheme.colors.primary,
-    style = radius.getTextStyle()
+    style = radius.getTextStyle(),
+    modifier = modifier
 )

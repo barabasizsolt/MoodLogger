@@ -3,11 +3,13 @@ package com.barabasizsolt.moodlogger
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Slider
 import androidx.compose.material.Text
 import androidx.compose.runtime.mutableStateOf
@@ -25,11 +27,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MoodLoggerTheme {
+            MoodLoggerTheme(darkTheme = false) {
                 val radius = LocalConfiguration.current.screenWidthDp.dp / 2 - 20.dp
                 var rememberedRadius by rememberSaveable { mutableStateOf(value = radius.value) }
 
-                Box(modifier = Modifier.fillMaxSize()) {
+                Box(modifier = Modifier.fillMaxSize().background(color = MaterialTheme.colors.background)) {
                     MoodLogger(
                         radius = rememberedRadius.dp,
                         modifier = Modifier.align(alignment = Alignment.Center)

@@ -8,10 +8,29 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun Dp.getTextStyle() = when {
-    this > 300.dp -> MaterialTheme.typography.h5
-    this > 200.dp -> MaterialTheme.typography.h6
-    this > 100.dp -> MaterialTheme.typography.body1
-    else -> MaterialTheme.typography.overline.copy(letterSpacing = 0.4.sp)
+    this >= 300.dp -> MaterialTheme.typography.h6
+    this >= 200.dp -> MaterialTheme.typography.subtitle2
+    this >= 140.dp -> MaterialTheme.typography.caption
+    this >= 115.dp -> MaterialTheme.typography.overline.copy(
+        letterSpacing = 0.2.sp,
+        fontSize = 10.sp
+    )
+    this >= 95.dp -> MaterialTheme.typography.overline.copy(
+        letterSpacing = 0.2.sp,
+        fontSize = 8.sp
+    )
+    this >= 70.dp -> MaterialTheme.typography.overline.copy(
+        letterSpacing = 0.2.sp,
+        fontSize = 6.sp
+    )
+    this >= 60.dp -> MaterialTheme.typography.overline.copy(
+        letterSpacing = 0.2.sp,
+        fontSize = 5.sp
+    )
+    else -> MaterialTheme.typography.overline.copy(
+        letterSpacing = 0.2.sp,
+        fontSize = 4.sp
+    )
 }
 
 @Composable
