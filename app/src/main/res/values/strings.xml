@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MoodLogger</string>
+    <string name="positive">Positive</string>
+    <string name="active">Active</string>
+    <string name="negative">Negative</string>
+    <string name="inactive">Inactive</string>
+</resources>
