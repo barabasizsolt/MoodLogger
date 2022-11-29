@@ -29,7 +29,7 @@ fun MoodLoggerFrame(
 
     CircularLayout(
         radius = radius,
-        startAngle = 120.0,
+        startAngle = 140.0,
         content = content,
         modifier = modifier.drawBehind {
             drawCircle(
