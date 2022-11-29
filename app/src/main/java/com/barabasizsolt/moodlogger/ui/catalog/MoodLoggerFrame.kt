@@ -2,13 +2,14 @@ package com.barabasizsolt.moodlogger.ui.catalog
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -47,18 +48,11 @@ fun MoodLoggerFrameItems(
     currentSelectedMoodPosition: Int,
     moodNumber: Int
 ) {
-    val selectedMoodPosition = rememberSaveable { mutableStateOf(value = currentSelectedMoodPosition) }
-
     for (moodPosition in 0 until moodNumber) {
-        if (selectedMoodPosition.value == moodPosition) {
+        if (currentSelectedMoodPosition == moodPosition) {
             MoodToggleButton()
         } else {
-            MoodFrameButton(
-                onClick = {
-                    onClick(moodPosition)
-                    selectedMoodPosition.value = moodPosition
-                }
-            )
+            MoodFrameButton(onClick = { onClick(moodPosition) })
         }
     }
 }
@@ -87,7 +81,12 @@ private fun MoodFrameButton(
     modifier: Modifier = Modifier
 ) = Box(
     modifier = modifier
-        .clickable { onClick() }
+        .clip(shape = CircleShape)
+        .clickable(
+            indication = null,
+            interactionSource = remember { MutableInteractionSource() }
+        ) { onClick() }
+        .padding(all = 16.dp)
         .size(size = 12.dp)
         .clip(shape = CircleShape)
         .background(color = MaterialTheme.colors.primary)
