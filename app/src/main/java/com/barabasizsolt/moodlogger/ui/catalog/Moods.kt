@@ -24,11 +24,6 @@ fun Mood(
 )
 
 val moods = buildList {
-    add(element = Mood(name = "Angry", resId = R.drawable.angry))
-    add(element = Mood(name = "Frustrated", resId = R.drawable.frustrated))
-    add(element = Mood(name = "Shamed", resId = R.drawable.shamed))
-    add(element = Mood(name = "Fearful", resId = R.drawable.fearful))
-
     add(element = Mood(name = "Discouraged", resId = R.drawable.discouraged))
     add(element = Mood(name = "Bored", resId = R.drawable.bored))
     add(element = Mood(name = "Lonely", resId = R.drawable.lonely))
@@ -43,6 +38,11 @@ val moods = buildList {
     add(element = Mood(name = "Happy", resId = R.drawable.happy))
     add(element = Mood(name = "Cooperative", resId = R.drawable.cooperative))
     add(element = Mood(name = "Excited", resId = R.drawable.excited))
+
+    add(element = Mood(name = "Angry", resId = R.drawable.angry))
+    add(element = Mood(name = "Frustrated", resId = R.drawable.frustrated))
+    add(element = Mood(name = "Shamed", resId = R.drawable.shamed))
+    add(element = Mood(name = "Fearful", resId = R.drawable.fearful))
 }
 
 @Parcelize

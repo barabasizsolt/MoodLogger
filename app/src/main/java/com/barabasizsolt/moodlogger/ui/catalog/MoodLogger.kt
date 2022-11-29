@@ -24,7 +24,7 @@ fun MoodLogger(
     modifier: Modifier = Modifier,
     radius: Dp = LocalConfiguration.current.screenWidthDp.dp / 2 - 20.dp
 ) {
-    val selectedMood = rememberSaveable { mutableStateOf(value = moods[12]) }
+    val selectedMood = rememberSaveable { mutableStateOf(value = moods[8]) }
 
     Column(
         modifier = modifier.fillMaxSize(),
