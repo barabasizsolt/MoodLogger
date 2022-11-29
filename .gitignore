@@ -1,3 +1,22 @@
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/misc.xml
+/.idea/assetWizardSettings.xml
+/.idea/deploymentTargetDropDown.xml
+/.idea/.name
+/.idea/compiler.xml
+
+.DS_Store
+/build
+/captures
+.cxx
+
+### Android template
 # Built application files
 *.apk
 *.aar
@@ -83,3 +102,6 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+# Android Profiling
+*.hprof
