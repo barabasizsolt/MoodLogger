@@ -4,8 +4,8 @@ Custom Jetpack Compose Layout.
 
 ### Screenshots
 
-<img src="screenshots/excited.png" width="26%" /> <img src="screenshots/fearful.png" width="26%" />
-<img src="screenshots/lonely.png" width="26%" /> <img src="screenshots/humble.png" width="26%" />
+<img src="screenshots/excited.png" width="48%" /> <img src="screenshots/fearful.png" width="48%" />
+<img src="screenshots/lonely.png" width="48%" /> <img src="screenshots/humble.png" width="48%" />
 
 ### License
 
