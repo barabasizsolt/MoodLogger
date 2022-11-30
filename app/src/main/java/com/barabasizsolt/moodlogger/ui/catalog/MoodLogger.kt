@@ -18,13 +18,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.barabasizsolt.moodlogger.data.Mood
+import com.barabasizsolt.moodlogger.ui.theme.MoodLoggerTheme
 import com.barabasizsolt.moodlogger.ui.util.getHeaderTextStyle
 
-@Preview
 @Composable
 fun MoodLogger(
     modifier: Modifier = Modifier,
-    radius: Dp = LocalConfiguration.current.screenWidthDp.dp / 2 - 20.dp
+    radius: Dp
 ) {
     val selectedMood = rememberSaveable { mutableStateOf(value = moods[8]) }
 
@@ -91,6 +91,17 @@ private fun MoodLoggerBody(
         selectedMood = mood,
         modifier = Modifier.align(alignment = Alignment.Center)
     )
+}
+
+@Preview
+@Composable
+fun MoodLoggerPreview() = Box {
+    MoodLoggerTheme(darkTheme = false) {
+        MoodLogger(
+            radius = LocalConfiguration.current.screenWidthDp.dp / 2 - 20.dp,
+            modifier = Modifier.align(alignment = Alignment.Center)
+        )
+    }
 }
 
 private val moods = Mood.getMoods()
