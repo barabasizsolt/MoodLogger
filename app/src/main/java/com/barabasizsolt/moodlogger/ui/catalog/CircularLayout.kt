@@ -8,6 +8,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import kotlin.math.PI
 import kotlin.math.cos
+import kotlin.math.pow
 import kotlin.math.sin
 import kotlin.math.sqrt
 
@@ -20,8 +21,6 @@ fun CircularLayout(
     content: @Composable () -> Unit
 ) {
     val itemRadiusPx = with(LocalDensity.current) { (radius - paddingFromRadius).roundToPx() }
-    var totalRadius: Int
-    var maxChildDiameter = 0
 
     Layout(
         content = content,
@@ -29,14 +28,11 @@ fun CircularLayout(
 
             val placeables = measurable.map { it.measure(constraints = constraints) }
 
-            placeables.forEach {
-                val h = it.height.toDouble()
-                val w = it.width.toDouble()
-                val diameter = sqrt(x = h * h + w * w)
-                if (diameter > maxChildDiameter) maxChildDiameter = diameter.toInt()
+            val maxChildDiameter = placeables.maxOf {
+                sqrt(x = it.height.toDouble().pow(n = 2) + it.width.toDouble().pow(n = 2)).toInt()
             }
 
-            totalRadius = itemRadiusPx + maxChildDiameter /2
+            val totalRadius = itemRadiusPx + maxChildDiameter / 2
 
             layout(width = totalRadius * 2, height = totalRadius * 2) {
                 val step = PI * 2 / placeables.size
