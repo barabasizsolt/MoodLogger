@@ -27,6 +27,8 @@ import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import androidx.compose.foundation.layout.navigationBarsPadding
 
+//TODO: [provide radius with LocalCompositionProvider] - high priority
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
