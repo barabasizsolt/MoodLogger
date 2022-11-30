@@ -20,18 +20,34 @@ import com.barabasizsolt.moodlogger.ui.theme.MoodLoggerTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
+import androidx.core.view.WindowCompat
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import androidx.compose.foundation.layout.navigationBarsPadding
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContent {
             MoodLoggerTheme(darkTheme = false) {
+                val systemUiController = rememberSystemUiController()
+                systemUiController.setStatusBarColor(color = Color.Transparent, darkIcons = false)
+                systemUiController.setNavigationBarColor(color = Color.Transparent, darkIcons = false)
+
                 val radius = LocalConfiguration.current.screenWidthDp.dp / 2 - 20.dp
                 var rememberedRadius by rememberSaveable { mutableStateOf(value = radius.value) }
 
-                Box(modifier = Modifier.fillMaxSize().background(color = MaterialTheme.colors.background)) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(color = MaterialTheme.colors.background)
+                        .navigationBarsPadding()
+                ) {
                     MoodLogger(
                         radius = rememberedRadius.dp,
                         modifier = Modifier.align(alignment = Alignment.Center)
