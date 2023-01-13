@@ -1,6 +1,6 @@
 # MoodLogger
 
-Custom Jetpack Compose Layout.
+Custom Jetpack Compose composable.
 
 ### Screenshots
 
